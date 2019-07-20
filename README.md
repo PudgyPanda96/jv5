@@ -1,5 +1,5 @@
 ## jv5
-[https://www.<url-goes-here>.com](https://www.google.com)
+[https://www.url-goes-here.com](https://www.google.com)
 
 // TODO About the project goes here
 
