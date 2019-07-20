@@ -1,5 +1,5 @@
 ## jv5
-[https://www.PlsChangeMe.com](https://www.PlsChangeMe.com)
+[https://www.<url-goes-here>.com](https://www.google.com)
 
 // TODO About the project goes here
 
@@ -65,8 +65,8 @@ git push origin master
 
 ## Contributors
 - Nick Prezioso - (pls add your email)
-- Mike Serpico - (pls add your email)
 - Aziz Rahman - (pls add your email)
+- Mike Serpico - (pls add your email)
 - Jordan Standig - (pls add your email)
 - Renard Tumbokon - rentumbokon@gmail.com
 
