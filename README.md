@@ -1,5 +1,5 @@
-## jv5
-[https://www.url-goes-here.com](https://www.google.com)
+## PROJECT JV5
+[https://www.PlsChangeMe.com](https://www.PlsChangeMe.com)
 
 // TODO About the project goes here
 
@@ -28,6 +28,7 @@
 
 ## Installation
 // TODO Add how to set up local
+Refer to this doc for now: https://docs.google.com/document/d/1X6bkDy32xbi3oDFL_F3I6iDOyDPu9ebVJMFYd2ZQgJ4
 
 ## API Reference
 // TODO Add link to Swagger or API doc
