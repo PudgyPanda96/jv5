@@ -29,7 +29,6 @@ public class UserController {
 	@ResponseBody
 	public List<User> getAllUsers() {		
 		List<User> allUsers = userService.getAllUsers(); 
-		
 		LOGGER.debug("*** Returning userResources={}", allUsers);
 		return allUsers;
 	}
