@@ -8,4 +8,8 @@ public interface UserService {
 
 	List<User> getAllUsers();
 	
+	void createUser(User user);
+	
+	void loginUser(String alias);
+	
 }
