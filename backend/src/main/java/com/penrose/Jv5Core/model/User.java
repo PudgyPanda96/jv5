@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -17,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class User {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long userId;
 	
 	@NotNull
@@ -116,6 +117,7 @@ public class User {
 		this.avatar = avatar;
 	}
 
+	@Transient
 	public Date getCreatedDate() {
 		return createdDate;
 	}
@@ -124,10 +126,12 @@ public class User {
 		this.createdDate = createdDate;
 	}
 
+	@Transient
 	public Date getLastUpdatedDate() {
 		return lastUpdatedDate;
 	}
 
+		
 	public void setLastUpdatedDate(Date lastUpdatedDate) {
 		this.lastUpdatedDate = lastUpdatedDate;
 	}

@@ -2,6 +2,8 @@ package com.penrose.Jv5Core.user.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +30,7 @@ public class UserController {
 	@Autowired
 	private UserService userService; 
 	
-	@GetMapping(value="/", produces="application/json")
+	@GetMapping(value="", produces="application/json")
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
 	public List<User> getAllUsers() {		
@@ -37,18 +39,18 @@ public class UserController {
 		return allUsers;
 	}
 	
-	@PostMapping
+	@PostMapping(path="", produces="application/json")
 	@ResponseStatus(HttpStatus.OK)
-	public void createUser(@RequestBody User user) {
-		userService.createUser(user);
-		return;
+	public User createUser(@Valid @RequestBody User user) {
+		User newUser = userService.createUser(user);
+		return newUser;
 	}
 	
-	@GetMapping(path = "{alias}")
+	@GetMapping(path = "/{userId}")
 	@ResponseStatus(HttpStatus.OK)
-	public void loginUser(@PathVariable("alias")String alias) {
-		userService.loginUser(alias);
-		return;
+	public User loginUser(@PathVariable("userId") Long userId) {
+		User user = userService.getUserByUserId(userId);
+		return user;
 	}
 	
 }

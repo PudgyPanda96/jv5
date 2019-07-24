@@ -34,31 +34,27 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void createUser(User user) {
-		List<User> allUsers = userRepository.findAll();
+	public User createUser(User user) {
+		if (user.getUserId() != null) {
+			throw new RuntimeException("Bad user. User should not have UserId definied when creating new user");
+		}		
+		
+		List<User> users = userRepository.findByEmail(user.getEmail());
 
-		if(allUsers.contains(user)) {
+		if (users.size() != 0) {
 			throw new RuntimeException("User already exists");
 		}
-		else {
-			userRepository.save(user);
-		}
 
+		User newUser = userRepository.save(user);
+		LOGGER.info("*** New user made successfully:", newUser.toString());
+		return newUser;
 	}
 
 	@Override
-	public void loginUser(String alias) {
-		List<User> allUsers = userRepository.findAll();
-
-		for(User u: allUsers) {
-			if(u.getAlias().equals("alias")) {
-				currentUser = u;
-				LOGGER.info("{} has been logged in", u.getAlias());
-				return;
-			}
-		}
-		throw new RuntimeException(alias + " is not signed up"); 
-
+	public User getUserByUserId(Long userId) {
+		User user = userRepository.findById(userId).orElseThrow(RuntimeException :: new);
+		LOGGER.info("*** Found user:", user.toString());
+		return user; 
 	}
 
 }

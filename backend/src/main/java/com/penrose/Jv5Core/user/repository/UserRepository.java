@@ -1,5 +1,7 @@
 package com.penrose.Jv5Core.user.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.penrose.Jv5Core.model.User;
@@ -18,4 +20,6 @@ public interface UserRepository extends JpaRepository<User, Long>{
 	// <S extends T> List<S> findAll(Example<S> example)
 	// <S extends T> List<S> findAll(Example<S> example, Sort sort)
 
+	public List<User> findByEmail(String email);
+	public User getUserByUserId(Long userId);
 }
