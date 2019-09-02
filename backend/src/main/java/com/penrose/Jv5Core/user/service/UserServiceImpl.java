@@ -30,7 +30,40 @@ public class UserServiceImpl implements UserService {
 		LOGGER.info("*** Found {} total users in database", allUsers.size());
 		return allUsers; 
 	}
-
 	
+	public User registerUser(User user) {
+		List<User> allUsers = userRepository.findAll();
+		
+		for(User u: allUsers) {
+			if(u.getAlias().equals(user.getAlias())) {
+				throw new RuntimeException("User " + user.getAlias() + " already created");
+			}
+		}
+		
+		LOGGER.info("User " + user.getAlias() + " created");
+		userRepository.save(user);
+		return user;
+	}
 	
+//	public User loginUser(User user) {
+//		
+//		
+//		return user;
+//	}
+	
+	public boolean verifyUserCredentials(User user) {
+		List<User> allUsers = userRepository.findAll();
+		
+		for(User u: allUsers) {
+			if(u.getAlias().equals(user.getAlias())) {
+				if(u.getPassword().equals(user.getPassword())) {
+					return true;
+				} else {
+					return false;
+				}
+			}
+		}
+		return false;
+	}
+		
 }

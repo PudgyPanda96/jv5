@@ -8,4 +8,11 @@ public interface UserService {
 
 	List<User> getAllUsers();
 	
+	User registerUser(User user);
+	
+//	User loginUser(User user);
+	
+	boolean verifyUserCredentials(User user);
+
+	
 }

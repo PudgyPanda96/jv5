@@ -42,8 +42,18 @@ public class User {
 	
 	private Date lastUpdatedDate; 
 	
+	private String password;
 	
 	
+	
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	public Long getUserId() {
 		return userId;
 	}
