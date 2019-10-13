@@ -14,10 +14,11 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
 @Entity(name="user")
+@JsonIgnoreProperties(ignoreUnknown=true)
 public class User {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long userId;
 	
 	@NotNull

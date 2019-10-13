@@ -32,6 +32,9 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	public User registerUser(User user) {
+		if (user == null || user.getAlias() == null) {
+			return null;
+		}
 		List<User> allUsers = userRepository.findAll();
 		
 		for(User u: allUsers) {
@@ -51,18 +54,23 @@ public class UserServiceImpl implements UserService {
 //		return user;
 //	}
 	
-	public boolean verifyUserCredentials(User user) {
+	public boolean verifyUserCredentials(User user) { //TODO: rework
 		List<User> allUsers = userRepository.findAll();
-		
+		LOGGER.debug("Finding User={}, Password={}", user.getAlias(), user.getPassword());
 		for(User u: allUsers) {
 			if(u.getAlias().equals(user.getAlias())) {
+				LOGGER.debug("Found existing User={}",user.getAlias());
 				if(u.getPassword().equals(user.getPassword())) {
+					LOGGER.debug("Found matching password for User={}", user.getAlias());
 					return true;
 				} else {
+					LOGGER.debug("Incorrect password for User={}", user.getAlias());
 					return false;
 				}
 			}
 		}
+		LOGGER.debug("Cannot find User={}",user.getAlias());
+		
 		return false;
 	}
 		
