@@ -1,0 +1,43 @@
+<h1>Register</h1>
+
+<form class="example-form">
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="First Name" [(ngModel)]="user.firstName" [ngModelOptions]="{standalone: true}">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Last Name" [(ngModel)]="user.lastName" [ngModelOptions]="{standalone: true}">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Email" [(ngModel)]="user.email" [ngModelOptions]="{standalone: true}">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <!-- <input matInput placeholder="Country" [(ngModel)]="user.country" [ngModelOptions]="{standalone: true}"> -->
+        <mat-label>Country</mat-label>
+        <mat-select>
+            <mat-option *ngFor="let country of countries" [value]="country.value" (click)="selectCountry(country.name)">
+                {{country.name}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field class="example-full-width" *ngIf="showStatesNCities">
+        <!-- <input matInput placeholder="State" [(ngModel)]="user.state" [ngModelOptions]="{standalone: true}"> -->
+        <mat-label>Region</mat-label>
+        <mat-select>
+            <mat-option *ngFor="let state of states" [value]="state.name" (click)="selectState(state.name)">
+                {{state.name}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field class="example-full-width" *ngIf="showStatesNCities">
+        <input matInput placeholder="City" [(ngModel)]="user.city" [ngModelOptions]="{standalone: true}">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Password" [(ngModel)]="user.password" [ngModelOptions]="{standalone: true}">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="alias" [(ngModel)]="user.alias" [ngModelOptions]="{standalone: true}">
+    </mat-form-field>
+
+
+    <button (click)="registerUser()">REGISTER</button>
+    <button (click)="cancel()">Cancel</button>

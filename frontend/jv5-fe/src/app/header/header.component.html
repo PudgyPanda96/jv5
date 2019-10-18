@@ -1,0 +1,20 @@
+<mat-toolbar color="primary" *ngIf="!sessionService.registering">
+    <mat-toolbar-row>
+        <h1>JV5</h1>
+        <span class=" menu-spacer "></span>
+        <div>
+            <a mat-button [routerLink]=" 'home' " class="homeButton "> Home </a>
+            <input type="text " pInputText placeholder="Search for profiles " class="searchField " /> <a class="searchButton "><i class="pi pi-search "></i></a>
+            <a mat-button class="login " (click)="login()" *ngIf=!sessionService.isLoggedIn>LOGIN</a>
+            <a mat-button class="register " (click)="register()" *ngIf="!sessionService.isLoggedIn">REGISTER</a>
+            <img src="assets\imgs\noPic.png" class="profilePic" *ngIf="sessionService.isLoggedIn" mat-button [matMenuTriggerFor]="profileMenu">
+            <mat-menu #profileMenu="matMenu">
+                <button mat-menu-item>Profile</button>
+                <button mat-menu-item>Settings</button>
+                <button mat-menu-item (click)="signOut()">Signf Out</button>
+            </mat-menu>
+        </div>
+        <p-dialog header="LOGIN " [(visible)]="showLogin " [resizable]="false " [draggable]="false " [modal]="true ">
+            <app-login></app-login>
+        </p-dialog>
+    </mat-toolbar-row>
