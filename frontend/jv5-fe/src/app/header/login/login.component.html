@@ -5,7 +5,7 @@
     <h5 *ngIf="success">Your form is valid!</h5>
 
     <label>
-      Username:
+      Email:
       <input type="text" formControlName="username">
       <div *ngIf="submitted && messageForm.controls.username.errors" class="error">
         <div *ngIf="messageForm.controls.username.errors.required">Put in a username next time idiot</div>

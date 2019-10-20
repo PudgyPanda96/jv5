@@ -54,24 +54,24 @@ public class UserServiceImpl implements UserService {
 //		return user;
 //	}
 	
-	public boolean verifyUserCredentials(User user) { //TODO: rework
+	public User verifyUserCredentials(User user) { //TODO: rework
 		List<User> allUsers = userRepository.findAll();
-		LOGGER.debug("Finding User={}, Password={}", user.getAlias(), user.getPassword());
+		LOGGER.debug("Finding User={}, Password={}", user.getEmail(), user.getPassword());
 		for(User u: allUsers) {
-			if(u.getAlias().equals(user.getAlias())) {
-				LOGGER.debug("Found existing User={}",user.getAlias());
+			if(u.getEmail().equals(user.getEmail())) {
+				LOGGER.debug("Found existing User={}",user.getEmail());
 				if(u.getPassword().equals(user.getPassword())) {
 					LOGGER.debug("Found matching password for User={}", user.getAlias());
-					return true;
+					return u;
 				} else {
 					LOGGER.debug("Incorrect password for User={}", user.getAlias());
-					return false;
+					return null;
 				}
 			}
 		}
 		LOGGER.debug("Cannot find User={}",user.getAlias());
 		
-		return false;
+		return null;
 	}
 		
 }

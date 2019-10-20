@@ -14,7 +14,7 @@
                 <button mat-menu-item (click)="signOut()">Sign Out</button>
             </mat-menu>
         </div>
-        <p-dialog header="LOGIN " [(visible)]="showLogin " [resizable]="false " [draggable]="false " [modal]="true ">
+        <p-dialog header="LOGIN " [(visible)]="sessionService.loggingIn" [resizable]="false " [draggable]="false " [modal]="true ">
             <app-login></app-login>
         </p-dialog>
     </mat-toolbar-row>

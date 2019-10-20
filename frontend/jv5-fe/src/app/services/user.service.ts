@@ -22,11 +22,14 @@ export class UserService {
     return this.http.post<any>(this.url + "registerUser/", user, httpOptions);
   }
 
-  loginUser(username: string, password: string) {
+  loginUser(email: string, password: string) {
     let u = new Map();
-    u.set(username, password);
+    //u.set(username, password);
+    var user: User = new User();
+    user.setEmail(email);
+    user.setPassword(password);
 
-    return this.http.post<User>(this.url + "loginUser", u);
+    return this.http.post<User>(this.url + "loginUser", user);
   }
 
   setCurrentUser(user: User) {

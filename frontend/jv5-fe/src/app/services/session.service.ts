@@ -7,6 +7,7 @@ export class SessionService {
 
   registering: boolean = false;
   isLoggedIn: boolean = false;
+  loggingIn: boolean = false;
   constructor() { }
 
   setRegistering(r: boolean) {
@@ -23,5 +24,13 @@ export class SessionService {
 
   GetLoggedIn() {
     return this.isLoggedIn;
+  }
+
+  setLoggingIn(l: boolean) {
+    this.loggingIn = l;
+  }
+
+  getLoggingIn() {
+    return this.loggingIn;
   }
 }

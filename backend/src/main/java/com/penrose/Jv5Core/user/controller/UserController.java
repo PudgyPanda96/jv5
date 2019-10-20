@@ -55,14 +55,14 @@ public class UserController {
 	@PostMapping(value="/loginUser", produces="application/json")
 	@ResponseBody
 	public ResponseEntity<User> loginUser(@RequestBody User user, HttpServletRequest request, HttpServletResponse response) {
-		boolean isValidPassword = userService.verifyUserCredentials(user);
+		User isValidUser = userService.verifyUserCredentials(user);
 		//userService.loginUser(user);
-		if(!isValidPassword) {
+		if(isValidUser == null) {
 			//response.SC_UNAUTHORIZED;
 			return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
 		}
 		request.getSession().setAttribute("user", user.getAlias());
-		return new ResponseEntity<>(user, HttpStatus.OK);
+		return new ResponseEntity<>(isValidUser, HttpStatus.OK);
 	}
 	
 	@PostMapping(value="/logoutUser", produces="application/json")

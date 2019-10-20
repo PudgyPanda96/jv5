@@ -12,7 +12,7 @@ public interface UserService {
 	
 //	User loginUser(User user);
 	
-	boolean verifyUserCredentials(User user);
+	User verifyUserCredentials(User user);
 
 	
 }
