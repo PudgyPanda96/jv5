@@ -10,9 +10,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,11 +23,12 @@ import org.springframework.http.ResponseEntity;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.penrose.Jv5Core.Utill.JSONUtil;
+import com.penrose.Jv5Core.dto.UserResponse;
 import com.penrose.Jv5Core.model.User;
 import com.penrose.Jv5Core.user.service.UserService;
 
 @RestController
-@RequestMapping(path="/users")
+@RequestMapping(path="/user")
 @CrossOrigin
 public class UserController {
 
@@ -71,5 +74,13 @@ public class UserController {
 	public void logoutUser(@RequestBody User user, HttpServletRequest request, HttpServletResponse response) {
 		request.getSession().removeAttribute("user");
 		request.getSession().invalidate();
+	}
+	
+	@GetMapping(value="/getUserProfile/{userId}", produces="application/json")
+	@ResponseStatus(HttpStatus.OK)
+	@ResponseBody
+	public UserResponse getUserProfile(@PathVariable("userId") Long userId, HttpServletRequest request, HttpServletResponse response) {
+		UserResponse userResponse = userService.getUserProfile(userId);
+		return userResponse;
 	}
 }

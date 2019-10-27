@@ -10,7 +10,7 @@ CREATE TABLE `experience` (
 	`title` varchar(255) NOT NULL,
 	`team` varchar(255),
 	`start_date` datetime NOT NULL,
-    `end_date` varchar(255) NOT NULL, # varchar for 'CURRENT' date
+    `end_date` datetime,
     `description` varchar(1000),
 
     
