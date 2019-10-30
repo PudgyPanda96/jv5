@@ -157,7 +157,7 @@ public class UserServiceImpl implements UserService {
 			return new ArrayList<UserSocialMediaResponse>();
 		}
 		List<UserSocialMediaResponse> userSocialMediaResponseList = new ArrayList<UserSocialMediaResponse>();
-		userSocialMediaList.parallelStream().forEach(socialMedia -> {
+		userSocialMediaList.stream().forEach(socialMedia -> {
 			UserSocialMediaResponse userSocialMediaResponse = new UserSocialMediaResponse(); 
 			userSocialMediaResponse.setType(socialMedia.getType());
 			userSocialMediaResponse.setLink(socialMedia.getLink());
