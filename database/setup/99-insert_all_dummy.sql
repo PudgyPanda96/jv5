@@ -1,3 +1,4 @@
+
 DELETE FROM `user`;
 INSERT INTO `user` (user_id, password, first_name, last_name, alias, email, country, state, city, profile_image, game, game_role, about, resume_pdf, created_date, last_updated_date)
 VALUES 
@@ -28,4 +29,3 @@ VALUES
 	(1, 5, 'Facebook', 'http://www.facebook.com/jordan', NOW(), NOW()),
     (2, 5, 'Twitch', 'http://www.twitch.tv/jordan', NOW(), NOW()),
     (3, 1, 'Twitter', 'http://www.twitter.com', NOW(), NOW());    
-    
