@@ -21,6 +21,7 @@ import org.springframework.http.ResponseEntity;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.penrose.Jv5Core.Utill.JSONUtil;
+import com.penrose.Jv5Core.email.service.EmailService;
 import com.penrose.Jv5Core.model.User;
 import com.penrose.Jv5Core.user.service.UserService;
 
@@ -33,6 +34,9 @@ public class UserController {
 	
 	@Autowired
 	private UserService userService; 
+	
+	@Autowired 
+	EmailService emailService;
 
 	@GetMapping(value="", produces="application/json")
 	@ResponseStatus(HttpStatus.OK)
@@ -49,6 +53,7 @@ public class UserController {
 	public User registerUser(@RequestBody User user) throws Exception {
 		LOGGER.info("Registering User: {}", JSONUtil.convertToJson(user));
 		User registeredUser = userService.registerUser(user);
+		emailService.sendEmailToRegisteredUser(registeredUser);
 		return registeredUser;
 	}
 	
