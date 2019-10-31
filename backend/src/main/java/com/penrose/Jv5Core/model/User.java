@@ -1,14 +1,21 @@
 package com.penrose.Jv5Core.model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.validation.constraints.NotNull;
+
+import org.hibernate.annotations.Cascade;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -37,7 +44,7 @@ public class User {
 	private String state;
 	private String city;
 
-	private byte[] avatar; 
+	private byte[] profileImage; 
 		
 	private Date createdDate;
 	
@@ -45,16 +52,23 @@ public class User {
 	
 	private String password;
 	
+	private String game;
+	private String gameRole;
+	private String about;
+	private byte[] resumePdf;
 	
+	@OneToMany
+	@JoinColumn(name="userId", referencedColumnName="userId")
+	List<Accomplishment> accomplishmentList = new ArrayList<Accomplishment>();
 	
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
+	@OneToMany
+	@JoinColumn(name="userId", referencedColumnName="userId")
+	List<Experience> experienceList = new ArrayList<Experience>();
+	
+	@OneToMany
+	@JoinColumn(name="userId", referencedColumnName="userId")
+	List<UserSocialMedia> userSocialMediaList = new ArrayList<UserSocialMedia>();
+	
 	public Long getUserId() {
 		return userId;
 	}
@@ -119,12 +133,12 @@ public class User {
 		this.city = city;
 	}
 
-	public byte[] getAvatar() {
-		return avatar;
+	public byte[] getProfileImage() {
+		return profileImage;
 	}
 
-	public void setAvatar(byte[] avatar) {
-		this.avatar = avatar;
+	public void setProfileImage(byte[] profileImage) {
+		this.profileImage = profileImage;
 	}
 
 	public Date getCreatedDate() {
@@ -142,8 +156,70 @@ public class User {
 	public void setLastUpdatedDate(Date lastUpdatedDate) {
 		this.lastUpdatedDate = lastUpdatedDate;
 	}
-	
-	
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getGame() {
+		return game;
+	}
+
+	public void setGame(String game) {
+		this.game = game;
+	}
+
+	public String getGameRole() {
+		return gameRole;
+	}
+
+	public void setGameRole(String gameRole) {
+		this.gameRole = gameRole;
+	}
+
+	public String getAbout() {
+		return about;
+	}
+
+	public void setAbout(String about) {
+		this.about = about;
+	}
+
+	public byte[] getResumePdf() {
+		return resumePdf;
+	}
+
+	public void setResumePdf(byte[] resumePdf) {
+		this.resumePdf = resumePdf;
+	}
+
+	public List<Accomplishment> getAccomplishmentList() {
+		return accomplishmentList;
+	}
+
+	public void setAccomplishmentList(List<Accomplishment> accomplishmentList) {
+		this.accomplishmentList = accomplishmentList;
+	}
+
+	public List<Experience> getExperienceList() {
+		return experienceList;
+	}
+
+	public void setExperienceList(List<Experience> experienceList) {
+		this.experienceList = experienceList;
+	}
+
+	public List<UserSocialMedia> getUserSocialMediaList() {
+		return userSocialMediaList;
+	}
+
+	public void setUserSocialMediaList(List<UserSocialMedia> userSocialMediaList) {
+		this.userSocialMediaList = userSocialMediaList;
+	}
 
 	@Override
 	public String toString() {
