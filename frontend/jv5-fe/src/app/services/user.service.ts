@@ -8,7 +8,7 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 })
 export class UserService {
   url = "http://localhost:8080/api/users/";
-  currentUser: User;
+  private currentUser: User;
 
   constructor(private http: HttpClient) { }
 
@@ -34,5 +34,9 @@ export class UserService {
 
   setCurrentUser(user: User) {
     this.currentUser = user;
+  }
+
+  getCurrentUser() {
+    return this.currentUser;
   }
 }

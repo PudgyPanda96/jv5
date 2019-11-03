@@ -10,13 +10,13 @@ import { User } from 'src/app/models/User';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  
+
   messageForm: FormGroup;
   submitted = false;
-  success = false;
+  success = true;
 
 
-  constructor(private formBuilder: FormBuilder, private sessionService: SessionService, private userService:  UserService) { }
+  constructor(private formBuilder: FormBuilder, private sessionService: SessionService, private userService: UserService) { }
 
   ngOnInit() {
     this.messageForm = this.formBuilder.group({
@@ -27,26 +27,31 @@ export class LoginComponent implements OnInit {
 
   login() {
     console.log('clicked');
-    this.userService.loginUser(this.messageForm.controls.username.value, this.messageForm.controls.password.value).subscribe((data: User) => {
-      console.log(data)
-      this.userService.setCurrentUser(data)
+    this.submitted = true;
+    this.userService.loginUser
+    (this.messageForm.controls.username.value, this.messageForm.controls.password.value).subscribe((data: User) => {
+      console.log(data);
+      this.userService.setCurrentUser(data);
     });
-    this.sessionService.setRegistering(false)
+
+    if (this.messageForm.invalid) {
+      return;
+    }
+
+    console.log(this.userService.getCurrentUser());
+    if (this.userService.getCurrentUser() == null) {
+      console.log('FAILED');
+      this.success = false;
+      //return;
+    }
+
+    this.sessionService.setRegistering(false);
     this.sessionService.setLoggedIn(true);
     this.sessionService.setLoggingIn(false);
   }
 
   register() {
     this.sessionService.setRegistering(true);
-  }
-
-  onSubmit() {
-    this.submitted = true;
-
-    if (this.messageForm.invalid) {
-      return;
-    }
-    this.success = true;
   }
 
 }
