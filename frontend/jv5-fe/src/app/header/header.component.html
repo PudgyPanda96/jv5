@@ -9,7 +9,7 @@
             <a mat-button class="register " (click)="register()" *ngIf="!sessionService.isLoggedIn">REGISTER</a>
             <img src="assets\imgs\noPic.png" class="profilePic" *ngIf="sessionService.isLoggedIn" mat-button [matMenuTriggerFor]="profileMenu">
             <mat-menu #profileMenu="matMenu">
-                <button mat-menu-item>Profile</button>
+                <a routerLink="/profile"><button mat-menu-item>Profile</button></a>
                 <button mat-menu-item>Settings</button>
                 <button mat-menu-item (click)="signOut()">Sign Out</button>
             </mat-menu>

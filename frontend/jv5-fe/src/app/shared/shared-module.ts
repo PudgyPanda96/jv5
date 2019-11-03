@@ -7,6 +7,7 @@ import {DialogModule} from 'primeng/dialog';
 import {MatInputModule} from '@angular/material/input';
 import {InputTextModule} from 'primeng/inputtext';
 import {MatMenuModule} from '@angular/material/menu';
+import {PanelModule} from 'primeng/panel';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import {MatMenuModule} from '@angular/material/menu';
         DialogModule,
         MatInputModule,
         InputTextModule,
-        MatMenuModule
+        MatMenuModule,
+        PanelModule
 ],
     exports: [
         MatToolbarModule,
@@ -36,7 +38,8 @@ import {MatMenuModule} from '@angular/material/menu';
         DialogModule,
         MatInputModule,
         InputTextModule,
-        MatMenuModule
+        MatMenuModule,
+        PanelModule
 ],
   })
   export class SharedModule { }

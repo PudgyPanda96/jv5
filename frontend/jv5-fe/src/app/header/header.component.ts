@@ -10,17 +10,17 @@ import { UserService } from '../services/user.service';
 })
 export class HeaderComponent implements OnInit {
 
-  showLogin: boolean = false;
-  showRegister: boolean = false;
+  showLogin = false;
+  showRegister = false;
   constructor(private sessionService: SessionService, private router: Router, private route: ActivatedRoute, private userService: UserService) { }
 
   ngOnInit() {
-    
+
   }
 
   login() {
     this.sessionService.setLoggingIn(true);
-    //this.showLogin = true;
+    // this.showLogin = true;
   }
 
   register() {
