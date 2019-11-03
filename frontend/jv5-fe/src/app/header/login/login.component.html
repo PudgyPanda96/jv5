@@ -1,14 +1,13 @@
 <h1>PROJECT JV5</h1>
 
-<form [formGroup]="messageForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="messageForm">
 
-    <h5 *ngIf="success">Your form is valid!</h5>
 
     <label>
       Email:
       <input type="text" formControlName="username">
       <div *ngIf="submitted && messageForm.controls.username.errors" class="error">
-        <div *ngIf="messageForm.controls.username.errors.required">Put in a username next time idiot</div>
+        <div *ngIf="messageForm.controls.username.errors.required">Put in a valid email next time idiot</div>
       </div>
     </label>
 
@@ -19,14 +18,9 @@
           <div *ngIf="messageForm.controls.password.errors.required">Forgot the password retard</div>
         </div>
     </label>
-</form>
 
-<div *ngIf="submitted" class="results">
-    <strong>Username:</strong>
-    <span> {{ messageForm.controls.username.value }}</span>
-    <strong>Password:</strong>
-    <span> {{ messageForm.controls.password.value }}</span>
-</div>
+    <div *ngIf="!success">Email or password is incorrect</div>
+</form>
 
 <a routerLink="/home"><button (click)="login()">LOGIN</button></a>
 <a routerLink="/register" (click)="register()"><button>SIGNUP</button></a>
