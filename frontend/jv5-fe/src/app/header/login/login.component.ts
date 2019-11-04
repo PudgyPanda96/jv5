@@ -26,14 +26,17 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    console.log('clicked');
     this.submitted = true;
     this.userService.loginUser
     (this.messageForm.controls.username.value, this.messageForm.controls.password.value).subscribe((data: User) => {
       console.log(data);
-      this.userService.setCurrentUser(data);
+      var tempUser: User = data;
+      this.userService.setCurrentUser(tempUser);
+      this.setUserInfo()
     });
-
+  }
+  
+  setUserInfo() {
     if (this.messageForm.invalid) {
       return;
     }
@@ -53,5 +56,4 @@ export class LoginComponent implements OnInit {
   register() {
     this.sessionService.setRegistering(true);
   }
-
 }

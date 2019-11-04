@@ -1,0 +1,31 @@
+<div class="settings">
+    <div class="bordering">
+        <h1>Account Settings</h1>
+        <div>
+            <form class="example-form">
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="email:" readonly value="{{userService.getCurrentUser()['email']}}">
+                </mat-form-field> <a class="edit" routerLink="/EditEmail">Edit Email</a>
+            </form>
+        </div>
+        <div>
+            <form class="example-form">
+                <mat-form-field class="example-full-width, distance">
+                    <input matInput placeholder="Alias:" readonly value="{{userService.getCurrentUser()['alias']}}">
+                </mat-form-field> <a class="edit" routerLink="/EditAlias">Edit Alias</a>
+            </form>
+        </div>
+        <div>
+            <form class="example-form">
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Password:" type="password" readonly value="{{userService.getCurrentUser()['password']}}">
+                </mat-form-field> <a class="edit" routerLink="/EditPassword">Edit Password</a>
+            </form>
+        </div>
+    </div>
+
+    <div class="bordering">
+        <a class="delete" (click)="delete()">Delete Account</a>
+        <p>Clicking the "Delete Account" button will permanently delete your account from the site</p>
+    </div>
+</div>

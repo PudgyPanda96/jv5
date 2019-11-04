@@ -1,0 +1,17 @@
+.settings {
+    text-align: center;
+}
+
+.delete {
+    cursor: pointer;
+}
+
+.edit {
+    cursor: pointer;
+}
+
+.bordering {
+    border-style: solid;
+    border-width: 1px;
+    background: #ddf0ed;
+}

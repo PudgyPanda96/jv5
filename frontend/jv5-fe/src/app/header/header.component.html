@@ -10,7 +10,7 @@
             <img src="assets\imgs\noPic.png" class="profilePic" *ngIf="sessionService.isLoggedIn" mat-button [matMenuTriggerFor]="profileMenu">
             <mat-menu #profileMenu="matMenu">
                 <a routerLink="/profile"><button mat-menu-item>Profile</button></a>
-                <button mat-menu-item>Settings</button>
+                <a routerLink="settings"><button mat-menu-item>Settings</button></a>
                 <button mat-menu-item (click)="signOut()">Sign Out</button>
             </mat-menu>
         </div>

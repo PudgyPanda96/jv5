@@ -30,7 +30,7 @@ import com.penrose.Jv5Core.user.service.UserService;
 
 @RestController
 @RequestMapping(path="/user")
-@CrossOrigin
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class UserController {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
@@ -87,5 +87,19 @@ public class UserController {
 	public UserResponse getUserProfile(@PathVariable("userId") Long userId, HttpServletRequest request, HttpServletResponse response) {
 		UserResponse userResponse = userService.getUserProfile(userId);
 		return userResponse;
+	}
+	
+	@GetMapping(value="/verify", produces="application/json")
+	@ResponseStatus(HttpStatus.OK)
+	@ResponseBody
+	public ResponseEntity<User> verifyUser(@RequestBody User user, HttpServletRequest request, HttpServletResponse response) {		
+		User isValidUser = userService.verifyUserCredentials(user);
+		//userService.loginUser(user);
+		if(isValidUser == null) {
+			//response.SC_UNAUTHORIZED;
+			return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
+		}
+		request.getSession().setAttribute("user", user.getAlias());
+		return new ResponseEntity<>(isValidUser, HttpStatus.OK);
 	}
 }
