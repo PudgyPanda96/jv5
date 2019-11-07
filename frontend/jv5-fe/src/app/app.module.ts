@@ -21,6 +21,7 @@ import { SettingsComponent } from './header/settings/settings.component';
 import { EditEmailComponent } from './header/settings/edit-email/edit-email.component';
 import { EditAliasComponent } from './header/settings/edit-alias/edit-alias.component';
 import { EditPasswordComponent } from './header/settings/edit-password/edit-password.component';
+import { DeleteAccountComponent } from './header/settings/delete-account/delete-account.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { EditPasswordComponent } from './header/settings/edit-password/edit-pass
     EditEmailComponent,
     EditAliasComponent,
     EditPasswordComponent,
+    DeleteAccountComponent,
   ],
   imports: [
     BrowserModule,

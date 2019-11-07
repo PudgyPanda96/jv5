@@ -1,1 +1,17 @@
-<p>edit-alias works!</p>
+<div class="changeAlias">
+    <h2>Change Alias</h2>
+    <div>
+        <div>
+            <input (keypress)="setNewAlias($event)" placeholder="new alias" value="{{newAlias}}">
+        </div>
+        <div>
+            <input placeholder="confirm new alias" value="{{confirmAlias}}">
+        </div>
+        <div>
+            <input placeholder="password" type="password" value="{{password}}">
+        </div>
+        <div>
+            <button mat-raised-button color="primary" (click)="changeAlias()">Confirm</button>
+        </div>
+    </div>
+</div>

@@ -16,7 +16,8 @@ export class UserService {
   httpOptions  = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json',
-      'Authorization': 'Basic anY1X3N5c2FkbWluOnAzbnIwczM='
+      'Authorization': 'Basic anY1X3N5c2FkbWluOnAzbnIwczM=',
+      'Access-Control-Allow-Origin': '*'
     })
   };
 
@@ -37,6 +38,11 @@ export class UserService {
 
   deleteUser(user: User) {
     return this.http.delete<any>(this.settingsUrl + user['userId'], this.httpOptions);
+  }
+
+  verifyUser(user: User) {
+    var verifyUrl = this.url + "verify/?email=" + user.getEmail() + "&password=" + user.getPassword();
+    return this.http.get<any>(verifyUrl, this.httpOptions);
   }
 
   setCurrentUser(user: User) {

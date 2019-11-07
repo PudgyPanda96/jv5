@@ -30,13 +30,27 @@ export class LoginComponent implements OnInit {
     this.userService.loginUser
     (this.messageForm.controls.username.value, this.messageForm.controls.password.value).subscribe((data: User) => {
       console.log(data);
-      var tempUser: User = data;
-      this.userService.setCurrentUser(tempUser);
-      this.setUserInfo()
+      var user: User = this.fillUserData(data);
+      this.setUserInfo(user)
     });
   }
+
+  fillUserData(data) {
+    console.log(data);
+    var user: User = new User();
+    user.setEmail(data['email'])
+    user.setFirstName(data['firstName'])
+    user.setLastName(data['lastName']);
+    user.setPassword(data['password']);
+    user.setState(data['state']);
+    user.setUserId(data['userId']);
+    user.setCity(data['city']);
+    user.setCountry(data['country']);
+    user.setAlias(data['alias']);
+    return user;
+  }
   
-  setUserInfo() {
+  setUserInfo(user: User) {
     if (this.messageForm.invalid) {
       return;
     }
@@ -51,6 +65,7 @@ export class LoginComponent implements OnInit {
     this.sessionService.setRegistering(false);
     this.sessionService.setLoggedIn(true);
     this.sessionService.setLoggingIn(false);
+    this.userService.setCurrentUser(user);
   }
 
   register() {

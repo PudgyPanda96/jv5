@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.hibernate.annotations.Parameter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -92,14 +93,16 @@ public class UserController {
 	@GetMapping(value="/verify", produces="application/json")
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
-	public ResponseEntity<User> verifyUser(@RequestBody User user, HttpServletRequest request, HttpServletResponse response) {		
-		User isValidUser = userService.verifyUserCredentials(user);
+	public ResponseEntity<User> verifyUser(@RequestParam String email, @RequestParam String password, HttpServletRequest request, HttpServletResponse response) {
+		User tempUser = new User();
+		tempUser.setEmail(email);
+		tempUser.setPassword(password);
+		User isValidUser = userService.verifyUserCredentials(tempUser);
 		//userService.loginUser(user);
 		if(isValidUser == null) {
 			//response.SC_UNAUTHORIZED;
 			return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
 		}
-		request.getSession().setAttribute("user", user.getAlias());
 		return new ResponseEntity<>(isValidUser, HttpStatus.OK);
 	}
 }
