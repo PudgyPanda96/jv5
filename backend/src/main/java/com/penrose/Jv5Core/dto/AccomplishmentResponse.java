@@ -4,13 +4,19 @@ import java.util.Date;
 
 public class AccomplishmentResponse {
 
+	private Long accomplishmentId; 
 	private String title;
 	private String game;
 	private String issuer;
 	private Date date;
 	private String description;
 	
-	
+	public Long getAccomplishmentId() {
+		return accomplishmentId;
+	}
+	public void setAccomplishmentId(Long accomplishmentId) {
+		this.accomplishmentId = accomplishmentId;
+	}
 	public String getTitle() {
 		return title;
 	}

@@ -2,10 +2,16 @@ package com.penrose.Jv5Core.dto;
 
 public class UserSocialMediaResponse {
 
+	private Long userSocialMediaId;
 	private String type;
 	private String link;
 	
-	
+	public Long getUserSocialMediaId() {
+		return userSocialMediaId;
+	}
+	public void setUserSocialMediaId(Long userSocialMediaId) {
+		this.userSocialMediaId = userSocialMediaId;
+	}
 	public String getType() {
 		return type;
 	}

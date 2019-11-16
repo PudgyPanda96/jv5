@@ -1,10 +1,13 @@
-package com.penrose.Jv5Core.user.repository;
+package com.penrose.Jv5Core.repository;
+
+import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.penrose.Jv5Core.model.User;
+import com.penrose.Jv5Core.model.Accomplishment;
+import com.penrose.Jv5Core.model.Experience;
 
-public interface UserRepository extends JpaRepository<User, Long>{
+public interface ExperienceRepository extends JpaRepository<Experience, Long>{
 
 	// List<T> findAll()
 	// List<T> findAll(Sort sort)
@@ -17,5 +20,6 @@ public interface UserRepository extends JpaRepository<User, Long>{
 	// T getOne(ID id) 
 	// <S extends T> List<S> findAll(Example<S> example)
 	// <S extends T> List<S> findAll(Example<S> example, Sort sort)
-
+	List<Experience> findAllByUserId(Long userId); 
+	
 }

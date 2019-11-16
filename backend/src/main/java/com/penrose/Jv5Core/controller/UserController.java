@@ -1,4 +1,4 @@
-package com.penrose.Jv5Core.user.controller;
+package com.penrose.Jv5Core.controller;
 
 import java.util.List;
 
@@ -8,25 +8,29 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.penrose.Jv5Core.Utill.JSONUtil;
-import com.penrose.Jv5Core.email.service.EmailService;
+import com.penrose.Jv5Core.dto.AccomplishmentResponse;
 import com.penrose.Jv5Core.dto.UserResponse;
 import com.penrose.Jv5Core.model.User;
-import com.penrose.Jv5Core.user.service.UserService;
+import com.penrose.Jv5Core.service.AccomplishmentService;
+import com.penrose.Jv5Core.service.ExperienceService;
+import com.penrose.Jv5Core.service.UserService;
+import com.penrose.Jv5Core.service.UserSocialMediaService;
+import com.penrose.Jv5Core.service.impl.EmailServiceImpl;
 
 @RestController
 @RequestMapping(path="/user")
@@ -38,8 +42,17 @@ public class UserController {
 	@Autowired
 	private UserService userService; 
 	
+	@Autowired
+	private ExperienceService experienceService; 
+	
+	@Autowired
+	private AccomplishmentService accomplishmentService; 
+	
+	@Autowired
+	private UserSocialMediaService userSocialMediaService; 
+	
 	@Autowired 
-	EmailService emailService;
+	EmailServiceImpl emailService;
 
 	@GetMapping(value="", produces="application/json")
 	@ResponseStatus(HttpStatus.OK)
@@ -81,6 +94,7 @@ public class UserController {
 		request.getSession().invalidate();
 	}
 	
+	// USER
 	@GetMapping(value="/getUserProfile/{userId}", produces="application/json")
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
@@ -88,4 +102,48 @@ public class UserController {
 		UserResponse userResponse = userService.getUserProfile(userId);
 		return userResponse;
 	}
+	
+	@PutMapping(value="/updateUserProfile", produces="application/json")
+	@ResponseStatus(HttpStatus.OK)
+	@ResponseBody
+	public User updateUserProfile(@RequestBody UserResponse userResponse, HttpServletRequest request, HttpServletResponse response) {
+		User updatedUser = userService.updateUserProfile(userResponse);
+		return updatedUser;
+	}
+	
+	@DeleteMapping(value="/deleteUserProfile/{userId}", produces="application/json")
+	@ResponseStatus(HttpStatus.OK)
+	@ResponseBody
+	public boolean deleteUserProfile(@PathVariable("userId") Long userId, HttpServletRequest request, HttpServletResponse response) {
+		boolean isDeleted = userService.deleteUserProfile(userId);
+		return isDeleted;
+	}
+	
+	// ACCOMPLISHMENTS
+	@GetMapping(value="/getUserAccomplishments/{userId}", produces="application/json")
+	@ResponseStatus(HttpStatus.OK)
+	@ResponseBody
+	public List<AccomplishmentResponse> getUserAccomplishments(@PathVariable("userId") Long userId, HttpServletRequest request, HttpServletResponse response) {
+		List<AccomplishmentResponse> accomplishmentResponseList = accomplishmentService.getUserAccomplishments(userId);
+		return accomplishmentResponseList;
+	}
+	
+	@PutMapping(value="/updateUserAccomplishment", produces="application/json")
+	@ResponseStatus(HttpStatus.OK)
+	@ResponseBody
+	public AccomplishmentResponse updateUserAccomplishment(@RequestBody AccomplishmentResponse accomplishmentResponse, HttpServletRequest request, HttpServletResponse response) {
+		AccomplishmentResponse updatedAccomplishmentResponse = accomplishmentService.updateUserAccomplishment(accomplishmentResponse);
+		return updatedAccomplishmentResponse;
+	}
+	
+	@DeleteMapping(value="/deleteUserAccomplishment/{userId}", produces="application/json")
+	@ResponseStatus(HttpStatus.OK)
+	@ResponseBody
+	public boolean deleteUserAccomplishment(@PathVariable("userId") Long userId, HttpServletRequest request, HttpServletResponse response) {
+		boolean isDeleted = accomplishmentService.deleteUserAccomplishment(userId);
+		return isDeleted;
+	}
+	
+	// TODO experience
+	// TODO userSocialMedia
 }

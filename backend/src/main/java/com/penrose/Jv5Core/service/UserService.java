@@ -1,4 +1,4 @@
-package com.penrose.Jv5Core.user.service;
+package com.penrose.Jv5Core.service;
 
 import java.util.List;
 
@@ -17,5 +17,7 @@ public interface UserService {
 
 	UserResponse getUserProfile(Long userId);
 
-	
+	User updateUserProfile(UserResponse userResponse);
+
+	boolean deleteUserProfile(Long userId);
 }
