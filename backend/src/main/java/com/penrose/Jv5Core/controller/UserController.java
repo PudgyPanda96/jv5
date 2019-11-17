@@ -24,8 +24,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.penrose.Jv5Core.Utill.JSONUtil;
 import com.penrose.Jv5Core.dto.AccomplishmentResponse;
+import com.penrose.Jv5Core.dto.ExperienceResponse;
 import com.penrose.Jv5Core.dto.UserResponse;
+import com.penrose.Jv5Core.dto.UserSocialMediaResponse;
 import com.penrose.Jv5Core.model.User;
+import com.penrose.Jv5Core.model.UserSocialMedia;
 import com.penrose.Jv5Core.service.AccomplishmentService;
 import com.penrose.Jv5Core.service.ExperienceService;
 import com.penrose.Jv5Core.service.UserService;
@@ -144,6 +147,53 @@ public class UserController {
 		return isDeleted;
 	}
 	
-	// TODO experience
-	// TODO userSocialMedia
+	// EXPERIENCES
+	@GetMapping(value="/getUserExperiences/{userId}", produces="application/json")
+	@ResponseStatus(HttpStatus.OK)
+	@ResponseBody
+	public List<ExperienceResponse> getUserExperiences(@PathVariable("userId") Long userId, HttpServletRequest request, HttpServletResponse response) {
+		List<ExperienceResponse> experienceResponseList = experienceService.getUserExperiences(userId);
+		return experienceResponseList;
+	}
+	
+	@PutMapping(value="/updateUserExperience", produces="application/json")
+	@ResponseStatus(HttpStatus.OK)
+	@ResponseBody
+	public ExperienceResponse updateUserExperience(@RequestBody ExperienceResponse experienceResponse, HttpServletRequest request, HttpServletResponse response) {
+		ExperienceResponse updatedExperienceResponse = experienceService.updateUserExperience(experienceResponse);
+		return updatedExperienceResponse;
+	}
+	
+	@DeleteMapping(value="/deleteUserExperience/{userId}", produces="application/json")
+	@ResponseStatus(HttpStatus.OK)
+	@ResponseBody
+	public boolean deleteUserExperience(@PathVariable("userId") Long userId, HttpServletRequest request, HttpServletResponse response) {
+		boolean isDeleted = experienceService.deleteUserExperience(userId);
+		return isDeleted;
+	}	
+	
+	// USER SOCIAL MEDIA
+	@GetMapping(value="/getUserSocialMedias/{userId}", produces="application/json")
+	@ResponseStatus(HttpStatus.OK)
+	@ResponseBody
+	public List<UserSocialMediaResponse> getUserSocialMedias(@PathVariable("userId") Long userId, HttpServletRequest request, HttpServletResponse response) {
+		List<UserSocialMediaResponse> userSocialMediasResponseList = userSocialMediaService.getUserSocialMedias(userId);
+		return userSocialMediasResponseList;
+	}
+	
+	@PutMapping(value="/updateUserSocialMedia", produces="application/json")
+	@ResponseStatus(HttpStatus.OK)
+	@ResponseBody
+	public UserSocialMediaResponse updateUserSocialMedia(@RequestBody UserSocialMediaResponse userSocialMediaResponse, HttpServletRequest request, HttpServletResponse response) {
+		UserSocialMediaResponse updatedUserSocialMediaResponse = userSocialMediaService.updateUserSocialMedia(userSocialMediaResponse);
+		return updatedUserSocialMediaResponse;
+	}
+	
+	@DeleteMapping(value="/deleteUserSocialMedia/{userId}", produces="application/json")
+	@ResponseStatus(HttpStatus.OK)
+	@ResponseBody
+	public boolean deleteUserSocialMedia(@PathVariable("userId") Long userId, HttpServletRequest request, HttpServletResponse response) {
+		boolean isDeleted = userSocialMediaService.deleteUserSocialMedia(userId);
+		return isDeleted;
+	}
 }
