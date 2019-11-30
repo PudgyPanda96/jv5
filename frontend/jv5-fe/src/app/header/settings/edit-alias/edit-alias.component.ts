@@ -3,6 +3,8 @@ import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/User';
 import { HttpErrorResponse } from '@angular/common/http';
 import { throwError } from 'rxjs';
+import { SettingsService } from 'src/app/services/settings.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-edit-alias',
@@ -14,59 +16,59 @@ export class EditAliasComponent implements OnInit {
   newAlias: string = "";
   confirmAlias: string = "";
   password: string = "";
+  aliasMatch: boolean;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private settingsService: SettingsService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
 
   }
 
-  changeAlias() {
-    console.log(this.password);
-    console.log(this.changeAlias);
-    console.log(this.confirmAlias);
-    var user: User = this.userService.getCurrentUser();
-    // user.setPassword(this.password);
-    user.setPassword("dsfsaft");
-    this.userService.verifyUser(user).subscribe(
-      (data: any) => {
-        console.log("we did it :D");
-    },
-      error => console.log(error.status)
-    )
-    
-  }
-  private handleError(error: HttpErrorResponse) {
-    if (error.error instanceof ErrorEvent) {
-      // A client-side or network error occurred. Handle it accordingly.
-      console.error('An error occurred:', error.error.message);
+  verifyAliasChange() {
+    if (this.checkAliasMatch()) {
+      this.aliasMatch = true;
+      var user: User = this.userService.getCurrentUser();
+      // user.setPassword(this.password);
+      user.setPassword(this.password);
+      this.userService.verifyUser(user).subscribe(
+        (data: any) => {
+          this.changeAlias()
+        },
+        error => {
+          console.log(error.status)
+          if (error.status == '401') {
+            //this will happen if the user inputted the wrong password
+          }
+          else {
+            //this will happen if the server failed
+          }
+        }
+      )
     } else {
-      // The backend returned an unsuccessful response code.
-      // The response body may contain clues as to what went wrong,
-      console.error(
-        `Backend returned code ${error.status}, ` +
-        `body was: ${error.error}`);
+      this.aliasMatch = false;
     }
-    // return an observable with a user-facing error message
-    return throwError(
-      'Something bad happened; please try again later.');
-  };
-
-
-  setNewAlias(event) {
-    console.log(event);
-    this.newAlias = this.newAlias + event.key
-    console.log(this.newAlias);
-  }
-
-  setConfirmAlias(event) {
 
   }
 
-  setPassword(event) {
-
+  checkAliasMatch() {
+    if (this.newAlias !== this.confirmAlias) {
+      console.log("broked");
+      return false;
+    }
+    return true;
   }
 
+  changeAlias() {
+    this.settingsService.changeAlias(this.userService.getCurrentUser().getEmail(), this.password, this.newAlias)
+      .subscribe((data: User) => {
+        console.log(data);
+        this.router.navigate(['home']);
+      })
+  }
 
+  cancel() {
+    console.log("test")
+    this.router.navigate(['/settings']);
+  }
 
 }

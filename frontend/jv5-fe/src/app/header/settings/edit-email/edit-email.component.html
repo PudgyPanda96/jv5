@@ -1,1 +1,42 @@
-<p>edit-email works!</p>
+<div class="row">
+    <div class="offset-sm-2 col-sm-8">
+        <div class="clickedSettings">
+            <div class="row">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-9">
+                    <h3 class="title">Changing Email for {{this.userService.getCurrentUser().getEmail()}}</h3>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="offset-sm-1 col-sm-6">
+                    <mat-form-field class="example-full-width">
+                        <input matInput placeholder="New Email:" [(ngModel)]="newemail" value="{{newEmail}}">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 offset-sm-1">
+                    <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Confirm New Email:" [(ngModel)]="confirmEmail" value="{{confirmEmail}}">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 offset-sm-1">
+                    <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Confirm Password:" type="password" [(ngModel)]="password" value="{{password}}">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row buttons">
+                <div class="col-sm-3 offset-sm-1">
+                    <button mat-raised-button color="primary" (click)="verifyEmailChange()">Save Changes</button>
+                </div>
+                <div class="col-sm-3">
+                    <button mat-raised-button color="primary" (click)="cancel()">Cancel Changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

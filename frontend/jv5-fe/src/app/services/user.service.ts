@@ -36,9 +36,6 @@ export class UserService {
     return this.http.post<User>(this.url + "loginUser", user);
   }
 
-  deleteUser(user: User) {
-    return this.http.delete<any>(this.settingsUrl + user['userId'], this.httpOptions);
-  }
 
   verifyUser(user: User) {
     var verifyUrl = this.url + "verify/?email=" + user.getEmail() + "&password=" + user.getPassword();

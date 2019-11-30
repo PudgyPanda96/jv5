@@ -1,14 +1,16 @@
 package com.penrose.Jv5Core.user.service;
 
+import org.springframework.web.bind.annotation.RequestParam;
+
 import com.penrose.Jv5Core.model.User;
 
 public interface SettingsService {
 	
-	User updatePassword(User user, Long id );
+	User updatePassword(String email, String password, String newPassword);
 	
-	User updateAlias(User user, Long id);
+	User updateAlias(String email, String password, String newAlias);
 	
-	User updateEmail(User user, Long id);
+	User updateEmail(String email, String password, String newEmail);
 	
-	User deleteAccount(Long id);
+	User deleteAccount(String email, String password);
 }

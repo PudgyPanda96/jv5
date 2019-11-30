@@ -81,4 +81,17 @@ export class User {
         this.password = password;
     }
 
+    public fillFromData(data: any) {
+        console.log(data);
+        this.email = data['email']
+        this.firstName = data['firstName']
+        this.lastName = data['lastName']
+        this.password = data['password']
+        this.state = data['state']
+        this.userId = data['userId']
+        this.city = data['city']
+        this.country = data['country']
+        this.alias = data['alias']
+    }
+
 }

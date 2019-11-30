@@ -1,6 +1,7 @@
 package com.penrose.Jv5Core.user.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import com.penrose.Jv5Core.model.User;
 
@@ -17,5 +18,7 @@ public interface UserRepository extends JpaRepository<User, Long>{
 	// T getOne(ID id) 
 	// <S extends T> List<S> findAll(Example<S> example)
 	// <S extends T> List<S> findAll(Example<S> example, Sort sort)
-
+	
+	@Query(value="select * from user u where u.email=?1 and u.password=?2", nativeQuery=true)
+	User findUserByEmailAndPassword(String email, String password);
 }

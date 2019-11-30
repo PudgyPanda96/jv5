@@ -65,5 +65,9 @@ public class EmailService {
 	public void updateEmail(User user) {
 		
 	}
+	
+	public void updateAlias(User user) {
+		
+	}
 
 }

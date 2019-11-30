@@ -22,61 +22,56 @@ public class SettingsServiceImpl implements SettingsService{
 	private UserRepository userRepository;
 	
 	@Override
-	public User updatePassword(User user, Long id) {
-		Optional<User> u = userRepository.findById(id);
-		if(u.isEmpty()) {
-			LOGGER.debug("User by id {} does not exist. Password not updated.", id);
-			return null;
-		} else {
-			userRepository.delete(u.get());
-			userRepository.save(user);
-			return user;
-		}
-	}
-
-	@Override
-	public User updateAlias(User user, Long id) {
-		Optional<User> u = userRepository.findById(id);
-		if(u.isEmpty()) {
-			LOGGER.debug("User by id {} does not exist. Alias not updated", id);
-			return null;
-		} else {
-			userRepository.delete(u.get());
-			userRepository.save(user);
-			return user;
-		}
-	}
-
-	@Override
-	public User deleteAccount(Long id) {
-		Optional<User> u = userRepository.findById(id);
-		if(u.isEmpty()) {
-			LOGGER.debug("***User by id {} does not exist. Account not deleted", id);
-			return null;
-		} else {
-			userRepository.delete(u.get());
-			return u.get();
-		}
-	}
-
-	@Override
-	public User updateEmail(User user, Long id) {
-		Optional<User> u = userRepository.findById(id);
-		List<User> allUsers = userRepository.findAll();
-		if(u.isEmpty()) {
-			LOGGER.debug("***User by id {} does not exist. Email not updated.", id);
+	public User updatePassword(String email, String password, String newPassword) {
+		User u = userRepository.findUserByEmailAndPassword(email, password);
+		if(u == null) {
+			LOGGER.debug("***User not found to update password");
 			return null;
 		}
 		else {
-			for(User userCheck: allUsers) {
-				if(userCheck.getEmail().equals(user.getEmail())) {
-					LOGGER.debug("***Email {} is already in use. Email not updated", user.getEmail());
-					return null;
-				}
-			}
-			userRepository.delete(u.get());
-			userRepository.save(user);
-			return user;
+			u.setPassword(newPassword);;
+			userRepository.save(u);
+			return u;
+		}
+	}
+
+	@Override
+	public User updateAlias(String email, String password, String newAlias) {
+		User u = userRepository.findUserByEmailAndPassword(email, password);
+		if(u == null) {
+			LOGGER.debug("***User not found to update alias");
+			return null;
+		}
+		else {
+			u.setAlias(newAlias);
+			userRepository.save(u);
+			return u;
+		}
+	}
+
+	@Override
+	public User deleteAccount(String email, String password) {
+		User u = userRepository.findUserByEmailAndPassword(email, password);
+		if(u == null) {
+			LOGGER.debug("***User does not exist. Account not deleted");
+			return null;
+		} else {
+			userRepository.delete(u);
+			return u;
+		}
+	}
+
+	@Override
+	public User updateEmail(String email, String password, String newEmail) {
+		User u = userRepository.findUserByEmailAndPassword(email, password);
+		if(u == null) {
+			LOGGER.debug("***User not found to update email");
+			return null;
+		}
+		else {
+			u.setAlias(newEmail);
+			userRepository.save(u);
+			return u;
 		}
 	}
 

@@ -101,8 +101,10 @@ public class UserController {
 		//userService.loginUser(user);
 		if(isValidUser == null) {
 			//response.SC_UNAUTHORIZED;
+			LOGGER.debug("***User was not verified");
 			return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
 		}
+		LOGGER.debug("***User was verified");
 		return new ResponseEntity<>(isValidUser, HttpStatus.OK);
 	}
 }
