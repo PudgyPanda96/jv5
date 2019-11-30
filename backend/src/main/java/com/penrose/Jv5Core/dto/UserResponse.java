@@ -5,6 +5,7 @@ import java.util.List;
 
 public class UserResponse {
 
+	private Long userId; 
 	private String firstName;
 	private String lastName;
 	private String alias;
@@ -20,6 +21,12 @@ public class UserResponse {
 	List<ExperienceResponse> experienceList = new ArrayList<ExperienceResponse>();
 	List<UserSocialMediaResponse> userSocialMediaList = new ArrayList<UserSocialMediaResponse>();
 	
+	public Long getUserId() {
+		return userId;
+	}
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
 	public String getFirstName() {
 		return firstName;
 	}

@@ -5,6 +5,7 @@ import java.util.Date;
 
 public class ExperienceResponse {
 
+	private Long experienceId; 
 	private String game;
 	private String title;
 	private String team;
@@ -12,6 +13,12 @@ public class ExperienceResponse {
 	private Date endDate;
 	private String description;
 	
+	public Long getExperienceId() {
+		return experienceId;
+	}
+	public void setExperienceId(Long experienceId) {
+		this.experienceId = experienceId;
+	}
 	public String getGame() {
 		return game;
 	}

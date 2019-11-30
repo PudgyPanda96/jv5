@@ -1,33 +1,29 @@
-package com.penrose.Jv5Core.email.service;
-
-import java.util.Properties;
+package com.penrose.Jv5Core.service.impl;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.core.env.Environment;
 import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Service;
 
 import com.penrose.Jv5Core.model.User;
-import com.penrose.Jv5Core.user.service.UserService;
+import com.penrose.Jv5Core.service.EmailService;
 
 @Service
-public class EmailService {
-
+public class EmailServiceImpl implements EmailService {
+	
 	private JavaMailSender javaMailSender;
-
-	private static final Logger LOGGER = LoggerFactory.getLogger(EmailService.class);
-
+	
+	private static final Logger LOGGER = LoggerFactory.getLogger(EmailServiceImpl.class);
+	
 	@Autowired
 	private Environment env;
 
 	@Autowired
-	public EmailService(JavaMailSender javaMailSender) {
+	public EmailServiceImpl(JavaMailSender javaMailSender) {
 		this.javaMailSender = javaMailSender;
 	}
 

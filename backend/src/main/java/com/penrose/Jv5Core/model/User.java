@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,8 +15,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.validation.constraints.NotNull;
-
-import org.hibernate.annotations.Cascade;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -57,17 +56,17 @@ public class User {
 	private String about;
 	private byte[] resumePdf;
 	
-	@OneToMany
+	@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name="userId", referencedColumnName="userId")
-	List<Accomplishment> accomplishmentList = new ArrayList<Accomplishment>();
+	List<Accomplishment> accomplishments = new ArrayList<Accomplishment>();
 	
-	@OneToMany
+	@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name="userId", referencedColumnName="userId")
-	List<Experience> experienceList = new ArrayList<Experience>();
+	List<Experience> experiences = new ArrayList<Experience>();
 	
-	@OneToMany
+	@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name="userId", referencedColumnName="userId")
-	List<UserSocialMedia> userSocialMediaList = new ArrayList<UserSocialMedia>();
+	List<UserSocialMedia> userSocialMedias = new ArrayList<UserSocialMedia>();
 	
 	public Long getUserId() {
 		return userId;
@@ -197,28 +196,28 @@ public class User {
 		this.resumePdf = resumePdf;
 	}
 
-	public List<Accomplishment> getAccomplishmentList() {
-		return accomplishmentList;
+	public List<Accomplishment> getAccomplishments() {
+		return accomplishments;
 	}
 
-	public void setAccomplishmentList(List<Accomplishment> accomplishmentList) {
-		this.accomplishmentList = accomplishmentList;
+	public void setAccomplishments(List<Accomplishment> accomplishments) {
+		this.accomplishments = accomplishments;
 	}
 
-	public List<Experience> getExperienceList() {
-		return experienceList;
+	public List<Experience> getExperiences() {
+		return experiences;
 	}
 
-	public void setExperienceList(List<Experience> experienceList) {
-		this.experienceList = experienceList;
+	public void setExperienceList(List<Experience> experiences) {
+		this.experiences = experiences;
 	}
 
-	public List<UserSocialMedia> getUserSocialMediaList() {
-		return userSocialMediaList;
+	public List<UserSocialMedia> getUserSocialMedias() {
+		return userSocialMedias;
 	}
 
-	public void setUserSocialMediaList(List<UserSocialMedia> userSocialMediaList) {
-		this.userSocialMediaList = userSocialMediaList;
+	public void setUserSocialMedias(List<UserSocialMedia> userSocialMedias) {
+		this.userSocialMedias = userSocialMedias;
 	}
 
 	@Override

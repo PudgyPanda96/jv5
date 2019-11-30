@@ -1,4 +1,4 @@
-package com.penrose.Jv5Core.user.repository;
+package com.penrose.Jv5Core.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
