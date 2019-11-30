@@ -1,4 +1,5 @@
 export class User {
+    userId: any;
     firstName: string;
     lastName: string;
     alias: string;
@@ -8,68 +9,89 @@ export class User {
     city: string;
     password: string;
 
-    getFirstName() {
-    	return this.firstName;
+    public getUserId() {
+        return this.userId;
     }
 
-    setFirstName(firstName) {
-    	this.firstName = firstName;
+    public setUserId(userId) {
+        this.userId = userId;
     }
 
-    getLastName() {
-    	return this.lastName;
+    public getFirstName() {
+        return this.firstName;
     }
 
-    setLastName(lastName) {
-    	this.lastName = lastName;
+    public setFirstName(firstName) {
+        this.firstName = firstName;
     }
 
-    getAlias() {
-    	return this.alias;
+    public getLastName() {
+        return this.lastName;
     }
 
-    setAlias(alias) {
-    	this.alias = alias;
+    public setLastName(lastName) {
+        this.lastName = lastName;
     }
 
-    getEmail() {
-    	return this.email;
+    public getAlias() {
+        return this.alias;
     }
 
-    setEmail(email) {
-    	this.email = email;
+    public setAlias(alias) {
+        this.alias = alias;
     }
 
-    getCountry() {
-    	return this.country;
+    public getEmail() {
+        return this.email;
     }
 
-    setCountry(country) {
-    	this.country = country;
+    public setEmail(email) {
+        this.email = email;
     }
 
-    getState() {
-    	return this.state;
+    public getCountry() {
+        return this.country;
     }
 
-    setState(state) {
-    	this.state = state;
+    public setCountry(country) {
+        this.country = country;
     }
 
-    getCity() {
-    	return this.city;
+    public getState() {
+        return this.state;
     }
 
-    setCity(city) {
-    	this.city = city;
+    public setState(state) {
+        this.state = state;
     }
 
-    getPassword() {
-    	return this.password;
+    public getCity() {
+        return this.city;
     }
 
-    setPassword(password) {
-    	this.password = password;
+    public setCity(city) {
+        this.city = city;
+    }
+
+    public getPassword() {
+        return this.password;
+    }
+
+    public setPassword(password) {
+        this.password = password;
+    }
+
+    public fillFromData(data: any) {
+        console.log(data);
+        this.email = data['email']
+        this.firstName = data['firstName']
+        this.lastName = data['lastName']
+        this.password = data['password']
+        this.state = data['state']
+        this.userId = data['userId']
+        this.city = data['city']
+        this.country = data['country']
+        this.alias = data['alias']
     }
 
 }

@@ -32,7 +32,6 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.registerService.getAllCountries().subscribe((data: any[]) => {
-      console.log(data)
       this.populateCountryTable(data);
     });
 
@@ -78,9 +77,11 @@ export class RegisterComponent implements OnInit {
 
   registerUser() {
     this.userService.registerUser(this.user).subscribe((data: any) => {
-      console.log(data);
       this.userService.setCurrentUser(this.user);
-    });
+    },
+      (error: any) =>{
+        console.log(error['message']);
+      });
     this.sessionService.setRegistering(false)
     this.sessionService.setLoggedIn(true);
     this.router.navigate(['home']);

@@ -1,0 +1,36 @@
+.container {
+    display: flex;
+}
+
+.container-1 div {
+    border: 1px #ccc solid;
+    padding: 10px;
+}
+
+.container-2 {
+    border: 1px #ccc solid;
+    padding: 10px;
+    padding-top: 10px;
+    text-align: center;
+}
+
+.editButtons {
+    position: relative;
+    right: 0%;
+    left: 60%;
+    text-align: center;
+    width: 120px;
+}
+
+.delete {
+    cursor: pointer;
+    color: red !important;
+}
+
+.passwordConfirm {
+    margin-top: 10px;
+}
+
+.buttonDelete {
+    margin-top: 10px;
+}

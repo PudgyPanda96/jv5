@@ -17,7 +17,10 @@ import { LoginComponent } from './header/login/login.component';
 import { RegisterComponent } from './header/register/register.component';
 import { FooterComponent } from './footer/footer.component';
 import { ProfileComponent } from './profile/profile/profile.component';
-import { EditComponent } from './profile/profile/edit/edit.component';
+import { SettingsComponent } from './header/settings/settings.component';
+import { EditEmailComponent } from './header/settings/edit-email/edit-email.component';
+import { EditAliasComponent } from './header/settings/edit-alias/edit-alias.component';
+import { EditPasswordComponent } from './header/settings/edit-password/edit-password.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,10 @@ import { EditComponent } from './profile/profile/edit/edit.component';
     RegisterComponent,
     FooterComponent,
     ProfileComponent,
-    EditComponent
+    SettingsComponent,
+    EditEmailComponent,
+    EditAliasComponent,
+    EditPasswordComponent
   ],
   imports: [
     BrowserModule,

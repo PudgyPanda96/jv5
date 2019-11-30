@@ -21,25 +21,49 @@ public class EmailServiceImpl implements EmailService {
 	
 	@Autowired
 	private Environment env;
-	
+
 	@Autowired
 	public EmailServiceImpl(JavaMailSender javaMailSender) {
 		this.javaMailSender = javaMailSender;
 	}
-	
-	
+
+
 	public void sendEmailToRegisteredUser(User user) throws MailException {
-		
+
 		//construct the actual email
 		SimpleMailMessage mail = new SimpleMailMessage();
 		mail.setTo(user.getEmail());
 		mail.setFrom(env.getProperty("spring.mail.username"));
 		mail.setSubject("JV5 Registration");
 		mail.setText("Thank you for registering for JV5.gg!");
-		
+
 		javaMailSender.send(mail);
-		
+
+		LOGGER.info("*** Email Sent to {}", user.getEmail());
+	}
+
+	public void deleteAccount(User user) {
+		//construct the actual email
+		SimpleMailMessage mail = new SimpleMailMessage();
+		mail.setTo(user.getEmail());
+		mail.setFrom(env.getProperty("spring.mail.username"));
+		mail.setSubject("JV5 Registration");
+		mail.setText("Your account has been deleted");
+
+		javaMailSender.send(mail);
 		LOGGER.info("*** Email Sent to {}", user.getEmail());
 	}
 	
+	public void updatePassword(User user) {
+		
+	}
+	
+	public void updateEmail(User user) {
+		
+	}
+	
+	public void updateAlias(User user) {
+		
+	}
+
 }

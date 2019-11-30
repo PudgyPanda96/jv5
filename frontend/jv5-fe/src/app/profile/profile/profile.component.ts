@@ -18,8 +18,8 @@ export class ProfileComponent implements OnInit {
 
   }
 
-  editText() {
+  // editText() {
 
-    this.sampleText = NewText
-  }
+  //   this.sampleText = NewText
+  // }
 }

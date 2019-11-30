@@ -1,10 +1,10 @@
 {
-    "/*": {
+    "/api": {
         "target": "http://restcountries.eu/rest/v2/all",
         "secure": false,
         "logLevel": "debug",
         "pathRewrite": {
-            "^/*": ""
+            "^/api": ""
         },
         "changeOrigin": true
     }

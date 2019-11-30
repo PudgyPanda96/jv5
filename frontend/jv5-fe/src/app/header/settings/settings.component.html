@@ -1,0 +1,45 @@
+<div>
+    <div class="container-1">
+        <h1>Account Settings</h1>
+        <div class="box">
+            <form class="example-form">
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="email:" readonly value="{{userService.getCurrentUser()['email']}}">
+                </mat-form-field>
+                <button mat-raised-button color="primary" routerLink="/EditEmail" class="editButtons">Edit Email</button>
+            </form>
+        </div>
+        <div class="box">
+            <form class="example-form">
+                <mat-form-field class="example-full-width, distance">
+                    <input matInput placeholder="Alias:" readonly value="{{userService.getCurrentUser()['alias']}}">
+                </mat-form-field>
+                <button mat-raised-button color="primary" routerLink="/EditAlias" class="editButtons">Edit Alias</button>
+            </form>
+        </div>
+        <div class="box">
+            <form class="example-form">
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Password:" type="password" readonly value="{{userService.getCurrentUser()['password']}}">
+                </mat-form-field>
+                <button mat-raised-button color="primary" routerLink="/EditPassword" class="editButtons">Edit Password</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="container-2">
+        <a class="delete" (click)="showDelete()">Delete Account</a>
+        <p>Clicking the "Delete Account" button will permanently delete your account from the site</p>
+    </div>
+    <p-dialog [(visible)]="delete" [style]="{width: '700px'}" header="Delete account" [resizable]="false " [draggable]="false " [modal]="true ">
+        <div class="row">
+            <p> Confirm your password and click submit in order to delete your account </p>
+        </div>
+        <div class="passwordConfirm">
+            <input matInput placeholder="Password:" [(ngModel)]="confirmedPassword" value="{{confirmedPassword}}">
+        </div>
+        <div>
+            <button mat-raised-button color="primary" (click)="verifyAccount()" class="buttonDelete">Delete</button>
+        </div>
+    </p-dialog>
+</div>
